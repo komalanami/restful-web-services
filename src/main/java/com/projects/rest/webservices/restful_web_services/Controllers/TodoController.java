@@ -1,4 +1,4 @@
-package com.projects.rest.webservices.restful_web_services.Controllers.TodoList;
+package com.projects.rest.webservices.restful_web_services.Controllers;
 
 import com.projects.rest.webservices.restful_web_services.services.TodoList.TodoHardCodedService;
 import com.projects.rest.webservices.restful_web_services.services.TodoList.Todo;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class TodoResource {
+public class TodoController {
 
     @Autowired
     private TodoHardCodedService todoService;
@@ -28,13 +28,17 @@ public class TodoResource {
         return todoService.findbyId(id);
     }
 
-    // DELETE /users/{username}/todos/{id}
+    //DELETE /users/{username}/todos/{id}
     @DeleteMapping("/users/{username}/todos/{id}")
-    public ResponseEntity<Todo> deleteTodo(@PathVariable String username, @PathVariable long id) {
+    public ResponseEntity<Void> deleteTodo(
+            @PathVariable String username, @PathVariable long id){
+
         Todo todo = todoService.deleteById(id);
-        if (todo != null) {
+
+        if(todo!=null) {
             return ResponseEntity.noContent().build();
         }
+
         return ResponseEntity.notFound().build();
     }
 

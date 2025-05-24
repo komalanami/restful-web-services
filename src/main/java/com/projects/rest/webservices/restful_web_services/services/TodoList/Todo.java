@@ -1,6 +1,5 @@
 package com.projects.rest.webservices.restful_web_services.services.TodoList;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

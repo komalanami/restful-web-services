@@ -34,7 +34,14 @@ public class TodoHardCodedService {
     }
 
     public Todo deleteById(long id) {
-        todos.removeIf(todo -> todo.getId() == id);
+        Todo todo = findbyId(id);
+
+        if(todo==null) return null;
+
+        if(todos.remove(todo)) {
+            return todo;
+        }
+
         return null;
     }
 
